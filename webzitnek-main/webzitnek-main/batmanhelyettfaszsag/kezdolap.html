@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Autó Dekor Kft</title>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="#">Autó dekor</a>
+            <a href="#">Kezdőlap</a>
+            <a href="#">Tanúsítvány</a>
+        </nav>
+    </header>
+
+    <h1>Autó Dekor Kft</h1>
+
+    <button class="show-card-button" onclick="showCard()">Új autó feltöltése</button>
+
+    <div id="form-card" class="card">
+        <form action="process.php" method="POST" enctype="multipart/form-data">
+            <label for="tipus">
+                <p>Típus</p>
+                <input type="text" name="tipus" id="tipus" placeholder="Típus" class="type" required oninput="showNextField('km')">
+            </label>
+
+            <div id="km-field" style="display:none;">
+                <label for="km">
+                    <p>Km állás</p>
+                    <input type="number" name="km" id="km" placeholder="Km állás" class="km" required oninput="showNextField('le')">
+                </label>
+            </div>
+
+            <div id="le-field" style="display:none;">
+                <label for="le">
+                    <p>LE</p>
+                    <input type="number" name="le" id="le" placeholder="LE" class="le" required oninput="showNextField('price')">
+                </label>
+            </div>
+
+            <div id="price-field" style="display:none;">
+                <label for="price">
+                    <p>Ár</p>
+                    <input type="number" name="ar" id="price" placeholder="Ár" class="price" required oninput="showNextField('fueltype')">
+                </label>
+            </div>
+
+            <div id="fueltype-field" style="display:none;">
+                <label for="fueltype">
+                    <p>Üzemanyag típus</p>
+                    <select name="fueltype" id="fueltype" class="fueltype" required onchange="showNextField('gearbox')">
+                        <option value="diesel">Dízel</option>
+                        <option value="benzin">Benzin</option>
+                        <option value="elektromos">Elektromos</option>
+                        <option value="hybrid">Hibrid</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="gearbox-field" style="display:none;">
+                <label for="gearbox">
+                    <p>Váltó típus</p>
+                    <select name="gearbox" id="gearbox" class="gearbox" required onchange="showNextField('image-upload')">
+                        <option value="manual">Manuális</option>
+                        <option value="automatic">Automata</option>
+                        <option value="semi-automatic">Fél-automata</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="image-upload-field" style="display:none;">
+                <label for="image-upload">
+                    <p>Képek feltöltése</p>
+                    <input type="file" name="images[]" id="image-upload" multiple accept=".png, .jpeg, .jpg, .webp" required>
+                </label>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn">Feltöltés</button>
+        </form>
+    </div>
+
+    <footer>
+        <h3>Rólam</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ducimus mollitia culpa dolor facere quos.</p>
+        
+        <h3>Elérhetőségek</h3>
+        <p>Email: <a href="mailto:dracz989@gmail.com">dracz989@gmail.com</a></p>
+        <p>Tel: <a href="tel:+36305360527">+36 30 536 0527</a></p>
+    </footer>
+
+    <script>
+        function showCard() {
+            document.getElementById("form-card").style.display = "block";
+        }
+
+        function showNextField(nextFieldId) {
+            const nextField = document.getElementById(nextFieldId + '-field');
+            if (nextField) {
+                nextField.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>
